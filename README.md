@@ -68,10 +68,14 @@ First, you have to check all informations about your branch
 	
 	git branch -a
 
+Go to a branch 
+
+	git checkout [name_of_your_new_branch]
+
 Add a new branch 
 	
 	git branch [name_of_your_new_branch]
-	
+
 	git branch master
 	git branch develop
 
