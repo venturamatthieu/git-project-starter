@@ -19,11 +19,9 @@ Project Structure branches by convention
 Required :
 
 - master
-	
-	git branch master
-
 - develop 
 
+	git branch master
 	git branch develop
 
 Extra :
