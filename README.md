@@ -4,6 +4,15 @@ git config --global user.name "FirstName LastName"
 git config --global user.email youremail@domain.extension
 
 Use ssh key, 
+Projet with Git  
+========================
+
+Command line, code, etc
+
+
+
+1) Global Informations 
+----------------------------------
 
 Project Structure
 
@@ -15,32 +24,38 @@ Project Structure
 
 Convention name for versionning
 
-1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
+	1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
 
-Starter 
+Clone Project 
 
 git clone git@github.com:yourrepo/yourprojectname.git
 
 
+2) How to commit 
+----------------------------------
+
+First you have to select the branch 
+
+	git checkout develop
+
+After add new file to your local git
+	git add .
+	git commit -am "Add, Fix "
+
+Then send your code to remote directory
+
+	git push origin develop
+
+If you want compare two branch 
+	git diff <source_branch> <target_branch> 
 
 
+2) How to manage branch 
+----------------------------------
 
-Commit 
-
-git checkout develop
-git add .
-git commit -am "Add, Fix "
-git push origin develop
-
-
-
- git diff <source_branch> <target_branch> 
-
-
-Branch Management 
-
-//Show all Branch
-git branch -a
+First, you have to check all informations about your branch
+	
+	git branch -a
 
 
 //Dev side - add feature (only dev branch)
