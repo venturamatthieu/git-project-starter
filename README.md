@@ -1,13 +1,15 @@
-Global Config
-
-git config --global user.name "FirstName LastName"
-git config --global user.email youremail@domain.extension
-
-Use ssh key, 
 Projet with Git  
 ========================
 
 Command line, code, etc
+
+
+Global Config
+
+	git config --global user.name "FirstName LastName"
+	git config --global user.email youremail@domain.extension
+
+Use your ssh key :) 
 
 
 
