@@ -1,20 +1,15 @@
-Global Config
-
-git config --global user.name "FirstName LastName"
-git config --global user.email youremail@domain.extension
-
-Use ssh key, 
-<<<<<<< HEAD
-
-Project Structure
-
-- master
-- develop
-=======
 Projet with Git  
 ========================
 
 Command line, code, etc
+
+
+Global Config
+
+	git config --global user.name "FirstName LastName"
+	git config --global user.email youremail@domain.extension
+
+Use your ssh key :) 
 
 
 
@@ -30,14 +25,12 @@ Required :
 
 Extra :
 
->>>>>>> release-1.0
 - feature-xxx
 - release-xxx
 - hotfixes-xxx
 
 Convention name for versionning
 
-<<<<<<< HEAD
 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
 
 Starter 
