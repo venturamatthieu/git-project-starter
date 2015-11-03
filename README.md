@@ -14,10 +14,20 @@ Command line, code, etc
 1) Global Informations 
 ----------------------------------
 
-Project Structure
+Project Structure branches by convention 
+
+Required :
 
 - master
-- develop
+	
+	git branch master
+
+- develop 
+
+	git branch develop
+
+Extra :
+
 - feature-xxx
 - release-xxx
 - hotfixes-xxx
@@ -26,9 +36,15 @@ Convention name for versionning
 
 	1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
 
-Clone Project 
+Clone your project 
 
-git clone git@github.com:yourrepo/yourprojectname.git
+	git clone git@github.com:yourrepo/yourprojectname.git
+
+Where my code is stored, basicaly is just one remote, orgin. But you could have more than one remote with on each more than one branch....
+
+	git remote -v
+
+
 
 
 2) How to commit 
@@ -50,115 +66,117 @@ If you want compare two branch
 	git diff <source_branch> <target_branch> 
 
 
-2) How to manage branch 
+2) How to manage branch - global
 ----------------------------------
 
 First, you have to check all informations about your branch
 	
 	git branch -a
 
+Add a new branch 
+	
+	git branch [name_of_your_new_branch]
 
-//Dev side - add feature (only dev branch)
+Add a new branch and jump it
 
+	git checkout -b [name_of_your_new_branch]
 
-///create
+Merge a branch
+	
+	git checkout branch-orgine
+	git merge --no-ff new-branch
 
-git checkout -b feature-xxx develop 
-//Switched to a new branch "feature-xxx "
+Using --no-ff, means that you keep information about this branch even after delete
 
-///merge
+Remove a branch
 
-git checkout develop
-//Switched to branch 'develop'
-
-git merge --no-ff feature-xxx 
-//Updating ea1b82a..05e9557 (Summary of changes)
-
-git branch -d feature-xxx 
-//Deleted branch feature-xxx  (was 05e9557).
-
-git push origin develop
+	git branch -d branch
 
 
 
+2) Manage branch - Feature (only develop branch)
+----------------------------------------------
 
-//Master side - add release (master and dev branch)
-Usefull to pass in production
+So first, you have to create a new branch. By convention, feature-xxx (xxx means version number like 1.2)
 
-///create 
+	git checkout -b feature-xxx develop 
 
-git checkout -b release-xxx 
-//Switched to a new branch "release-xxx"
+When your modifications are over, merge push and delete this temporary branch
 
-bump-version.sh xxx
-//Files modified successfully, version bumped to xxx.
+	git checkout develop
+	git merge --no-ff feature-xxx 
 
-git commit -a -m "Bumped version number to xxx"
-//[release-1.2 74d9424] Bumped version number to xxx
-//1 files changed, 1 insertions(+), 1 deletions(-)
-
-///merge - master
-
-git checkout master
-//Switched to branch 'master'
-
-git merge --no-ff release-xxx
-//Merge made by recursive.
-//(Summary of changes)
-
-git tag -a xxx
-
-///merge - develop
-git checkout develop
-git merge --no-ff release-1.2
-
-//Remove branch
-git branch -d release-1.2
-//Deleted branch release-1.2 (was ff452fe).
+	git branch -d feature-xxx 
+	git push origin develop
 
 
-//Master side - add hotfix (master and dev branch)
-Usefull to fix quickly a bug in production
+3) Manage branch - Release (master or dev branch)
+--------------------------------------------------
 
-///Create 
+This branch is usefull to manage versioning on your apps.
 
-git checkout -b hotfix-1.2.1 master
-//Switched to a new branch "hotfix-1.2.1"
+So first, you have to create a new branch. By convention, release-xxxX (xxxX means version number like 1.2)
 
-./bump-version.sh 1.2.1
-//Files modified successfully, version bumped to 1.2.1.
+	git checkout -b release-xxxx 
 
-git commit -a -m "Bumped version number to 1.2.1"
-//[hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1
+When your modifications are over, merge push and delete this temporary branch
 
-git commit -m "Fixed severe production problem"
+	bump-version.sh xxx
+	git commit -a -m "Bumped version number to xxx"
 
-git checkout master
+	git checkout master
+	git merge --no-ff release-xxx
+	
+	git tag -a xxx 'the Release xxx with ....'
 
-git checkout master
-//Switched to branch 'master'
+	git checkout develop
+	git merge --no-ff release-xxx
 
-git merge --no-ff hotfix-1.2.1
-//Merge made by recursive.
-//(Summary of changes)
-
-git tag -a 1.2.1
+	git branch -d release-xxx
 
 
-git checkout develop
-//Switched to branch 'develop'
-
-git merge --no-ff hotfix-1.2.1
-//Merge made by recursive.
-
-git branch -d hotfix-1.2.1
-//Deleted branch hotfix-1.2.1 (was abbe5d6).
+bump-version.sh is a file using to set the version number on your app (add code on readme and add tag)
 
 
-Tag
+4) Manage branch - Hotfix (master or dev branch)
+--------------------------------------------------
 
-git tag -a 1.0.0-alpha -m 'the initial release'
-git push origin --tags
+This branch is usefull to fix fastly some critical bug for production.
+
+So first, you have to create a new branch. By convention, hotfix-xxxX (xxxX means version number like 1.2.1)
+
+	git checkout -b hotfix-xxxx 
+
+When your modifications are over, merge push and delete this temporary branch
+
+	git checkout -b hotfix-1.2.1 master
+
+	./bump-version.sh 1.2.1
+	git commit -a -m "Bumped version number to 1.2.1"
+
+	git commit -m "Fixed severe production problem"
+
+	git checkout master
+	git merge --no-ff hotfix-1.2.1
+	git tag -a 1.2.1 -m 'the Hotfix 1.2.1 with ....'
+
+
+	git checkout develop
+	git merge --no-ff hotfix-1.2.1
+	git branch -d hotfix-1.2.1
+
+
+5) Manage tag
+--------------------------------------------------
+
+List all tags on the repo
+
+	git tag
+
+Add new tag on a branch 
+
+	git tag -a 1.0.0-alpha -m 'the initial release'
+	git push origin --tags
+
+This command if you dont have information, tag will be automaticaly generated by git.
 git push origin : tempTag
-
-git tag
