@@ -117,9 +117,9 @@ When your modifications are over, merge push and delete this temporary branch
 
 This branch is usefull to manage versioning on your apps.
 
-So first, you have to create a new branch. By convention, release-xxxX (xxxX means version number like 1.2)
+So first, you have to create a new branch. By convention, release-xxx (xxx means version number like 1.2)
 
-	git checkout -b release-xxxx 
+	git checkout -b release-xxx
 
 When your modifications are over, merge push and delete this temporary branch
 
