@@ -29,8 +29,12 @@ Commit
 
 git checkout develop
 git add .
+git commit -am "Add, Fix "
+git push origin develop
 
 
+
+ git diff <source_branch> <target_branch> 
 
 
 Branch Management 
