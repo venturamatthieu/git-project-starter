@@ -1,10 +1,10 @@
 Global Config
 
-git config --global user.name "FirstName LastName"
-git config --global user.email youremail@domain.extension
+	git config --global user.name "FirstName LastName"
+	git config --global user.email youremail@domain.extension
 
 Use ssh key, 
-Projet with Git  
+Project with Git  
 ========================
 
 Command line, code, etc
@@ -34,6 +34,10 @@ Convention name for versionning
 Clone your project 
 
 	git clone git@github.com:yourrepo/yourprojectname.git
+
+Clone your project without all history
+
+	git clone --depth 1 git@github.com:yourrepo/yourprojectname.git
 
 Where my code is stored, basicaly is just one remote, orgin. But you could have more than one remote with on each more than one branch....
 
@@ -185,7 +189,7 @@ When your modifications are over, merge push and delete this temporary branch
 
 
 
-7) Manage branch with git-flow
+8) Manage branch with git-flow
 -------------------------------
 First install command line on your computer : 
 
@@ -213,4 +217,39 @@ Hotfixes
 
     git flow hotfix start VERSION [BASENAME] 
     git flow hotfix finish VERSION 
+
+
+
+X) Extra : Rebase or Merge 
+-------------------------------
+
+Examples with 2 branchs : 
+
+ 		  A---B---C mes_devs [HEAD]
+         /
+    D---E---F---G master
+
+
+If I use a merge commande I will have : 
+
+		  A---B---C
+         /         \
+    D---E---F---G---H master mes_devs [HEAD]
+
+
+git rebase master
+
+                  A---B---C mes_devs [HEAD]
+                 /
+    D---E---F---G master
+
+git checkout master
+git merge mes_devs
+
+                  A---B---C mes_devs master [HEAD]
+                 /
+    D---E---F---G
+
+
+
 
